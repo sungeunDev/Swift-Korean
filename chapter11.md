@@ -1,4 +1,4 @@
-# 11 클래스와 구조체 (Classes and Structures)
+# 11 **클래스와 구조체 (Classes and Structures)**
 > Translator : 문대선(daeseonmoon@gmail.com)
 
 클래스와 구조체는 프로그램의 코드블럭을 정의할때 사용됩니다. 당신의 클래스와 구조체에 기능을 더하기 위해서 상수, 변수, 그리고 함수를 정의할때와 동일한 문법으로 프로퍼티와 메서드를 정의할 수 있습니다.
@@ -62,7 +62,7 @@ class VideoMode {
 위의 예제는 또한 비디오 화면을 위한 특정 비디오 모드를 정의하는 `VideoMode`라는 클래스를 정의합니다. 이 클래스는 네개의 변수인 저장된 프로퍼티를 가지고 있습니다. 첫번째로 `resolution`은 새로운 `Resolution`구조체의 인스턴스로 초기화됩니다. 즉 `Resolution`의 프로퍼티 타입으로 표현됩니다. 나머지 세개의 프로퍼티들은, 새로운 `VideoMode`인스턴스들은 각각 
 `interanced`는 non-interlaced 비디오라는 의미의 `false`로 초기화 되고, 재생시 frame Rate는 0.0으로 초기화 된다. 그리고 `name`이라 불리는 옵셔널 `String`값이 있다. `name` 프로퍼티는 옵셔널 타입이기 때문에 자동적으로 "`name` 프로퍼티에 값이 없다"는 의미인 `nil`로 기본값이 주어집니다.
 
-### 클래스와 구조체 인스턴스 (Class and Structure Instances)
+### **클래스와 구조체 인스턴스 (Class and Structure Instances)**
 `Resolution` 구조체와 `VideoMode` 클래스는 오직 `Resolution`또는 `VideoMode`가 어떻게 보일지를 정의할뿐, 특정한 해상도나 비디오 모드를 표현하지는 않습니다. 그러기에, 여러분은 구조체나 클래스의 인스턴스를 만들 필요가 있습니다.
 
 구조체나 클래스 인스턴스를 생성하기 위한 문법은 매우 유사합니다:
@@ -96,7 +96,7 @@ Objective-C와는 달리 Swift는 구조체 프로퍼티의 내부프로퍼티�
 
 ### 구조체 타입을 위한 멤버들의 초기화 (Memberwise Initializers for Structure Types)
 모든 구조체는 여러분이 새로은 구조체 인스턴스의 멤버 프로퍼티들을 초기화 할수있는 자동 생성된 멤버들의 initializer(memberwise initializer) 가지고 있습니다. 새로운 인스턴스의 프로퍼티들을 위한 초기값들은 이름을 통해서 멤버들의 initializer에게 전달 될 수 있습니다.
-```
+```swift
 let vga = Resolution(width: 640, height: 480)
 ```
 구조체와 다르게, 클래스 인스턴스는 기본 멤버들의 initializer를 받지 않습니다. Initializer의 자세한 사항은 [Initialization]()을 참조해주십시오.
@@ -109,7 +109,7 @@ let vga = Resolution(width: 640, height: 480)
 Swift에서 모든 구조체와 열거형은 값 타입입니다. 즉 여러분이 생성하는 모든 구조체와 열거형 인스턴스들, -그리고 프로퍼티로서 그들이 가지고 있는 모든 값 타입-은 여러분의 코드내에서 전달되는 경우에는 언제나 복사됩니다.
 
 앞의 예제에서 사용된 예제에서 `Resolution` 구조체의 사용에 대해서 더 생각해보자:
-```
+```swift
 let hd = Resolution(width: 1920, height: 1080)
 var cinema = hd
 ```
@@ -118,16 +118,16 @@ var cinema = hd
 그리고 `cinema`라는 변수를 선언하고 `hd` 상수의 현재 값으로 설정했습니다. `Resolution`이 구조체이기 때문에 존재하는 인스턴스의 복사본이 만들어지고, 이 새로운 복사본이 `cinema`에 할당됩니다. `hd`와 `cinema`가 현재 같은 넓이와 높이 값을 가지고 있다하더라도, 그들은 보이지 않는 곳에서는 완전히 다른 두 개의 인스턴스들입니다.
 
 다음은 `cinema`의 `width` 프로퍼티에 디지털 시네마 프로젝션을 위해 사용되는 slightly-wider 2K 표준값의(2048 픽셀 넓이와 1080 픽셀 높이)의 넓이로 수정합니다.
-```
+```swift
 cinema.width = 2048
 ```
 `cinema` 인스턴스의 `width` 프로퍼티를 체크하는 것으로 이 값이 정말로 2048로 변했음을 볼 수 있습니다.
-```
+```swift
 println("cinema is now \(cinema.width) pixels wide")
 // prints "cinema is now 2048 pixels wide"
 ```
 하지만 `hd` 인스턴스의 `width` 프로퍼티는 여전히 예전 값인 1920를 가지고 있습니다.
-```
+```swift
 println("hd is still \(hd.width) pixels wide")
 // prints "hd is still 1920 pixels wide"
 ```
@@ -184,7 +184,7 @@ println("The frameRate property of tenEighty is now \(tenEighty.frameRate)")
 * 동일하지 않은(Not identical to) (!==)
 
 두 상수나 변수가 동일한 인스턴스를 가리키는지 검사하기 위해 위의 두 연산자를 사용하십시오.
-```
+```swift
 if tenEighty === alsoTenEighty {
 	println("tenEighty and alsoTenEighty refer to the same Resolution instance.")
 }
